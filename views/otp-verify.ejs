@@ -14,7 +14,7 @@
       <p class="text-red-600 mb-4"><%= error %></p>
     <% } %>
 
-    <form action="/verify-otp" method="POST">
+    <form action="/otp-verify" method="POST">
       <div class="mb-2">
         <label for="otp">SMSで届いた6桁のコード</label>
         <input type="text" id="otp" name="otp" required class="border">
