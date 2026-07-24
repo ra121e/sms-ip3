@@ -1,9 +1,16 @@
+const path = require("path");
 const express = require("express");
 const session = require("express-session");
 
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "..", "views"));
+
+app.use(express.static(path.join(__dirname, "..", "public")));
 
 // フォームのPOSTボディ(application/x-www-form-urlencoded)を受け取るために必須
 app.use(express.urlencoded({ extended: true }));
@@ -25,7 +32,17 @@ app.use(
   })
 );
 
-// TODO(Step 1): express.static("public") と EJS の view engine 設定、authRoutes のマウントをここに追加する
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.get("/otp-verify", (req, res) => {
+  res.render("otp-verify");
+});
+
+app.get("/success", (req, res) => {
+  res.render("success");
+});
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);

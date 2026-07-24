@@ -74,10 +74,6 @@ jspm_packages/
 .nuxt
 dist
 
-# Gatsby files
-.cache/
-public
-
 # Serverless directories
 .serverless
 

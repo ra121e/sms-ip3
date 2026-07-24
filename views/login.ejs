@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ログイン</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-8">
+  <main>
+    <h1 class="text-lg mb-4">ログイン画面</h1>
+
+    <% if (typeof error !== "undefined" && error) { %>
+      <p class="text-red-600 mb-4"><%= error %></p>
+    <% } %>
+
+    <form action="/login" method="POST">
+      <div class="mb-2">
+        <label for="userId">ユーザID</label>
+        <input type="text" id="userId" name="userId" value="<%= typeof userId !== 'undefined' ? userId : '' %>" required class="border">
+      </div>
+
+      <div class="mb-2">
+        <label for="password">パスワード</label>
+        <input type="password" id="password" name="password" required class="border">
+      </div>
+
+      <button type="submit">ログイン</button>
+    </form>
+  </main>
+</body>
+</html>
