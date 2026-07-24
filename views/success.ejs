@@ -5,11 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ログイン成功</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Hiragino Sans", "Helvetica Neue", Arial, sans-serif;
+    }
+  </style>
 </head>
-<body class="p-8">
-  <main>
-    <h1 class="text-lg mb-4">SUCCSESS</h1>
-    <p>認証が完了</p>
+<body class="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+  <main class="w-full max-w-sm">
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 px-8 py-10 text-center">
+      <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-gray-900">
+        <svg class="h-7 w-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h1 class="text-2xl font-semibold text-gray-900 tracking-tight mb-1">ログイン成功</h1>
+      <p class="text-sm text-gray-400">認証が完了しました</p>
+    </div>
   </main>
 </body>
 </html>
