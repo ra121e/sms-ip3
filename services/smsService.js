@@ -1,6 +1,6 @@
 "use strict";
 
-const TEAM_NAME = "team42-";
+const TEAM_NAME = "team42";
 
 const REQUEST_TIMEOUT_MS = 10_000;
 
@@ -79,7 +79,7 @@ async function sendOtp(phone, code, user_name) {
   const requestBody = {
     to: phone,
     text: `ワンタイムパスワードは ${code} です。`,
-    user_reference: TEAM_NAME+user_name,
+    user_reference: `${TEAM_NAME}-${user_name}`,
   };
 
   try {
