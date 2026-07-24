@@ -1,0 +1,26 @@
+{
+  "name": "sms-auth-app",
+  "version": "1.0.0",
+  "description": "4時間ハッカソン用SMS認証アプリ",
+  "main": "app/server.js",
+  "scripts": {
+    "start": "node app/server.js",
+    "dev": "nodemon app/server.js",
+    "lint": "oxlint",
+    "prepare": "simple-git-hooks"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx oxlint"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "ejs": "^3.1.10",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4",
+    "oxlint": "latest",
+    "simple-git-hooks": "^2.11.1"
+  }
+}
