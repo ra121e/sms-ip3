@@ -1,7 +1,6 @@
 const path = require("path");
 const express = require("express");
 const session = require("express-session");
-const authRoutes = require("../routes/authRoutes");
 
 const app = express();
 
@@ -33,7 +32,17 @@ app.use(
   })
 );
 
-app.use(authRoutes);
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.get("/otp-verify", (req, res) => {
+  res.render("otp-verify");
+});
+
+app.get("/success", (req, res) => {
+  res.render("success");
+});
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);

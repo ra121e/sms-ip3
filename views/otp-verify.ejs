@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ワンタイムパスワード入力</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-8">
+  <main>
+    <h1 class="text-lg mb-4">ワンタイムパスワード入力</h1>
+
+    <% if (typeof error !== "undefined" && error) { %>
+      <p class="text-red-600 mb-4"><%= error %></p>
+    <% } %>
+
+    <form action="/verify-otp" method="POST">
+      <div class="mb-2">
+        <label for="otp">SMSで届いた6桁のコード</label>
+        <input type="text" id="otp" name="otp" required class="border">
+      </div>
+
+      <button type="submit">ログイン</button>
+    </form>
+  </main>
+</body>
+</html>
