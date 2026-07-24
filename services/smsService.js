@@ -1,8 +1,6 @@
 "use strict";
 
-require("dotenv").config();
-
-const TEAM_NAME = "team42";
+const TEAM_NAME = "team42-";
 
 const REQUEST_TIMEOUT_MS = 10_000;
 

@@ -1,6 +1,6 @@
 module.exports = [
-    { userId: "user01", password: "password", phone: "090-1111-2222" },
-    { userId: "user02", password: "password", phone: "090-3333-4444" },
+    { userId: "user01", password: "password", phone: "09011112222" },
+    { userId: "user02", password: "password", phone: "09033334444" },
     { userId: "softbank_delivered", password: "password", phone: "09001111101" },
     { userId: "docomo_delivered", password: "password", phone: "09001111102" },
     { userId: "au_delivered", password: "password", phone: "09001111103" },

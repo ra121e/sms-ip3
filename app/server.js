@@ -3,6 +3,8 @@ const express = require("express");
 const session = require("express-session");
 const mockUsers = require("../data/mockUsers");
 const { loginSchema } = require("../validation/authValidation");
+const { generateOtp } = require("../services/otpService");
+const { sendOtp } = require("../services/smsService");
 
 const app = express();
 
@@ -37,7 +39,7 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
   const parsed = loginSchema.safeParse(req.body);
   if (!parsed.success) {
     return res.render("login", {
@@ -57,15 +59,40 @@ app.post("/login", (req, res) => {
       error: "存在しないユーザーです",
     });
   }
+
+  const code = generateOtp();
+  req.session.pendingUserId = user.userId;
+  req.session.otpCode = code;
+
+  try {
+    await sendOtp(user.phone, code, user.userId);
+    console.log(`[SMS送信成功] to ${user.phone}: ワンタイムパスワードは ${code} です。`);
+  } catch (error) {
+    console.error(`[SMS送信失敗] ${error.message}`);
+    console.log(`[SMS MOCK] to ${user.phone}: ワンタイムパスワードは ${code} です。`);
+  }
+
   res.render("otp-verify");
 });
 
-// app.post("/otp-verify", (req, res) => {
+app.post("/otp-verify", (req, res) => {
+  if (!req.session.pendingUserId || !req.session.otpCode) {
+    return res.redirect("/login");
+  }
 
-// });
+  const { otp } = req.body;
 
-app.get("/success", (req, res) => {
+  if (otp !== req.session.otpCode) {
+    return res.render("otp-verify", { error: "コードが違います。" });
+  }
+
+  req.session.authenticated = true;
+  req.session.otpCode = null;
   res.render("success");
+});
+
+app.use((req, res) => {
+  res.redirect("/login");
 });
 
 app.listen(PORT, () => {
