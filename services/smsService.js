@@ -2,6 +2,8 @@
 
 require("dotenv").config();
 
+const TEAM_NAME = "team42";
+
 const REQUEST_TIMEOUT_MS = 10_000;
 
 const SMS_API_PATH = "/api/v1/short_messages";
@@ -71,7 +73,7 @@ async function readJsonResponse(response) {
  * SMS認証APIへOTP送信を依頼します。
  * Node.js標準のfetchは、この構成ではHTTP/1.1でHTTPS通信を行います。
  */
-async function sendOtp(phone, code) {
+async function sendOtp(phone, code, user_name) {
   const { accessToken, endpoint } = getApiSettings();
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
@@ -79,7 +81,7 @@ async function sendOtp(phone, code) {
   const requestBody = {
     to: phone,
     text: `ワンタイムパスワードは ${code} です。`,
-    user_reference: "teamip3-okuyama",
+    user_reference: TEAM_NAME+user_name,
   };
 
   try {
